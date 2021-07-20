@@ -1,20 +1,37 @@
+body{
+    background-color:rgb(56, 138, 56);
+}
+
 .App {
+  background-color: rgb(52, 80, 52);
   position: relative;
   left: 400px;
-  border: 1px solid;
+  border: 2px solid beige;
+  border-radius: 10px;
   width: 600px;
+  box-shadow: 3px 3px 7px black;  
 }
 
 .usuario{
     width: 150px;
+    height: 30px;
 }
 
 .msg{
     width: 380px;
+    height: 30px;    
 }
 
 .conteudo{
-    text-align: top;
+    text-align: start;
+    border: 1px solid white;
+    border-radius: 20px;
+    width: 300px;
+    background-color: whitesmoke;
+}
+
+.btn{
+  height: 35px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
