@@ -10,6 +10,7 @@ function App() {
       
       cont.innerHTML += `${user.value}: ${msg.value}`+'<br>'
       
+      user.focus()
       user.value = ''
       msg.value = ''
   }
@@ -20,8 +21,8 @@ function App() {
       </header>
       <div class="conteudo" id="cont"></div>
       <input type="text" placeholder="Usuário" class="usuario" id="user" />
-      <input type="text" class="msg" id="mensagem" />
-      <input type="button" value="Enviar" placeholder="Mensagem" onClick={recebeMsg} />
+      <input type="text" class="msg" id="mensagem"  placeholder="Mensagem"/>
+      <input type="button" value="Enviar" class="btn" onClick={recebeMsg} />
     </div>
   );
 }
