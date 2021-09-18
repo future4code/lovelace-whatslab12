@@ -1,30 +1,80 @@
-import logo from './logo.svg';
-import './App.css';
+import {useState} from 'react'
+import styled from 'styled-components'
+import {createGlobalStyle} from 'styled-components'
 
-function App() {  
-  
-  function recebeMsg(){
-      let cont = document.getElementById('cont')
-      let msg = document.getElementById('mensagem')
-      let user = document.getElementById('user')
-      
-      cont.innerHTML += `${user.value}: ${msg.value}`+'<br>'
-      
-      user.focus()
-      user.value = ''
-      msg.value = ''
+const GlobalStyle = createGlobalStyle`
+  body{
+    background-color: #25d366;
+    display: flex;
+    justify-content: center;
   }
-  return (
-    <div className="App">
-      <header className="App-header">
-        
-      </header>
-      <div class="conteudo" id="cont"></div>
-      <input type="text" placeholder="Usuário" class="usuario" id="user" />
-      <input type="text" class="msg" id="mensagem"  placeholder="Mensagem"/>
-      <input type="button" value="Enviar" class="btn" onClick={recebeMsg} />
-    </div>
-  );
+  h1{
+    text-align: center;
+  }
+
+`
+const Container = styled.div`
+  background-color: #dcf8c6;
+  border: 1px solid;
+  border-radius: 10px;
+  width: 23.5vw;
+  height: 50vh;
+`
+const InputContainer = styled.div`
+  position: fixed;
+  top: 59.4%;
+  input{
+    border-radius: 5px;
+    height: 4vh;  
+  }
+  button{
+    border-radius: 5px;
+    height: 5vh;
+    background-color: #075e54;
+    color: whitesmoke;
+  }
+
+`
+const MsgContainer = styled.div`
+  position: fixed;
+  display: flex;
+  flex-direction: column-reverse;
+  margin: 15px;
+
+`
+
+function App() {
+  const [msgs, setMsgs] = useState([])
+  const [msg, setMsg] = useState('')
+
+  const changeMsg =(e)=>{
+    setMsg(e.target.value)
+  }
+
+  const sendMsg = ()=>{
+    const newMsg = {
+        msg: msg
+    }    
+    const newMsgList = [newMsg, ...msgs]
+    setMsgs(newMsgList)           
+}
+
+  return<div>
+        <GlobalStyle/>
+        <h1>My whatsapp</h1>
+          <Container>
+            <MsgContainer>
+              {msgs.map(msg=>{
+                return <p>{msg.msg}</p>
+              })}
+            </MsgContainer>
+            <InputContainer>
+              <input type='text' placeholder='Mensagem' value={msg}
+              onChange={changeMsg} required/>
+              <button onClick={sendMsg}>Enviar</button>
+            </InputContainer>
+          </Container>
+        </div> 
 }
 
 export default App;
